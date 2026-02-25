@@ -6,4 +6,12 @@
     speed: 200,
     controls: false,
     navPosition: 'bottom',
+    responsive: {
+      1250: {
+        items: 3,
+      },
+      200: {
+        items: 1,
+      },
+    },
   });

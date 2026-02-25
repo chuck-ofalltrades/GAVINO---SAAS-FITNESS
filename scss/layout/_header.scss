@@ -2,25 +2,94 @@
 @use "../base/typography" as *;
 
 .header {
-    padding: 3rem 0;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    &__wrapper {
-        @include between;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 2rem 0;
+  position: relative;
+  background: #fff;
+  z-index: 100;
+
+  &__wrapper {
+    @include between;
+    align-items: center;
+  }
+
+  &__logo {
+    a > h4 {
+      color: $clr--dark;
+      margin: 0;
     }
-    &__logo {
-        a > h4 {
-            color: $clr--dark;
-        }
+  }
+
+  &__nav {
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+
+      li a {
+        font-weight: 600;
+        color: $clr--dark;
+      }
     }
-    &__nav {
-        ul {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            li a {
-                font-weight: 600;
-                color: $clr--dark;
-            }
-        }
+  }
+}
+
+/* Hamburger */
+.toggle__menu {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 200;
+
+  span {
+    width: 26px;
+    height: 3px;
+    background: $clr--dark;
+    display: block;
+    transition: 0.4s ease;
+  }
+
+  &.open {
+    span:first-child {
+      transform: translateY(9px) rotate(45deg);
     }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    span:last-child {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .toggle__menu {
+    display: flex;
+  }
+
+  .header__nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    padding-top: 8rem;
+    transition: right 0.4s ease;
+
+    ul {
+      flex-direction: column;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    &.open {
+      right: 0;
+    }
+  }
 }
